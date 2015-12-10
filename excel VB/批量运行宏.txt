@@ -1,0 +1,18 @@
+Sub a()
+    Dim myFile, myPath
+    myPath = "E:\Test\"
+    myFile = Dir("E:\Test\" & "*.xls")
+    Do While myFile <> ""
+        If myFile <> ThisWorkbook.Name Then
+            Workbooks.Open (myPath & myFile)
+            Set newmodule = Workbooks(myFile).VBProject.VBComponents.Add(1)
+            With ActiveWorkbook.VBProject.VBComponents(newmodule.Name).CodeModule
+            .InsertLines .CountOfLines + 1, _
+                "Sub abc()" & Chr(13) & "MsgBox ""Hello""" & Chr(13) & "End Sub"
+            End With
+            Application.Run myFile & "!" & "abc"
+            Workbooks(myFile).Close savechanges:=False
+        End If
+        myFile = Dir
+    Loop
+End Sub

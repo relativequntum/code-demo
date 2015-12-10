@@ -1,0 +1,13 @@
+Sub ×ª»»()
+Application.ScreenUpdating = False
+pth = ThisWorkbook.Path & "\"
+flnm = Dir(pth & "*.csv")
+Do While Len(flnm) > 0
+    With Workbooks.Open(pth & flnm, ReadOnly:=True)
+        .SaveAs Replace(flnm, ".csv", ""), IIf(Application.Version >= 12, xlWorkbookDefault, xlWorkbookNormal)
+        .Close
+    End With
+    flnm = Dir
+Loop
+End Sub
+

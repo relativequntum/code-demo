@@ -1,0 +1,29 @@
+Sub Macro1()
+'
+' Macro1 Macro
+'
+' Keyboard Shortcut: Ctrl+q
+'
+    Columns("A:A").Select
+    ActiveSheet.Range("$A$1:$A$134").RemoveDuplicates Columns:=1, Header:=xlNo
+    Rows("1:1").Select
+    Selection.Insert Shift:=xlDown
+    Range("A1").Select
+    ActiveCell.FormulaR1C1 = _
+        "=LEFT(RIGHT(CELL(""filename""),LEN(CELL(""filename""))-54),LEN(RIGHT(CELL(""filename""),LEN(CELL(""filename""))-54))-5)"
+    Range("A1").Select
+    Selection.Copy
+    Range("B1").Select
+    Selection.PasteSpecial Paste:=xlPasteValues, Operation:=xlNone, SkipBlanks _
+        :=False, Transpose:=False
+    Range("A1").Select
+    Selection.PasteSpecial Paste:=xlPasteValues, Operation:=xlNone, SkipBlanks _
+        :=False, Transpose:=False
+    ActiveWorkbook.Save
+    Dim MyFileName As String
+        MyFileName = "C:\Users\Jingyu\Desktop\¨ºy¨¢a?¨²?¡¤\?e¨¨¨²¡À3?¡ã\relationsExcel - ?¡À¡À?/" & [a1] & ".csv"
+    ActiveWorkbook.SaveAs Filename:=MyFileName, _
+        FileFormat:=xlCSV
+    ActiveWorkbook.Close (savechanges)
+End Sub
+

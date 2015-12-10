@@ -1,0 +1,27 @@
+Sub Macro1()
+'
+' Macro1 Macro
+'
+' Keyboard Shortcut: Ctrl+q
+'
+    
+    If B2 = "" Then ActiveWorkbook.Close
+    Range("A:A,D:G").Select
+    Range("D1").Activate
+    Selection.Delete Shift:=xlToLeft
+    Rows("1:1").Select
+    Selection.Delete Shift:=xlUp
+    Range("B1").Select
+    Range(Selection, Selection.End(xlDown)).Select
+    Selection.Cut
+    Range("A1").Select
+    Selection.End(xlDown).Select
+    Cells(ActiveCell.Row + 1, ActiveCell.Column).Select
+    ActiveSheet.Paste
+    Columns("A:A").Select
+    Range("A38").Activate
+    ActiveSheet.Range("$A$1:$A$134").RemoveDuplicates Columns:=1, Header:=xlNo
+    ActiveWorkbook.Save
+    ActiveWorkbook.Close
+End Sub
+

@@ -1,0 +1,9 @@
+=CELL("filename")
+=RIGHT(E8,LEN(E8)-50)
+=LEFT(E9,LEN(E9)-5)
+
+
+
+
+
+=LEFT(RIGHT(CELL("filename"),LEN(CELL("filename"))-54),LEN(RIGHT(CELL("filename"),LEN(CELL("filename"))-54))-5)
